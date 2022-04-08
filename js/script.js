@@ -1,18 +1,29 @@
 const container = document.querySelector(`.container`);
+let gridNo = 16
+createGrid();
+hover();
 
-for(let i = 0; i <= (16*16-1); i++){
-  const square1 = document.createElement(`div`);
-  square1.classList.add('square');
-  square1.textContent = i;
-  container.appendChild(square1)
+function createGrid() {
+  for(let i = 0; i <= (gridNo*gridNo-1); i++){
+    const square1 = document.createElement(`div`);
+    square1.classList.add('square');
+    container.appendChild(square1)
+  }
 }
 
-const square = document.querySelectorAll(`.square`);
-console.log(square)
-
-for (let i = 0; i < square.length; i++) {
-square[i].addEventListener('mouseenter', function() {
-  square[i].classList.add('hover');
-}, {once : true});
+function hover () {
+  const square = document.querySelectorAll(`.square`);
+  for (let i = 0; i < square.length; i++) {
+  square[i].addEventListener('mouseenter', function() {
+    square[i].classList.add('hover');
+  }, {once : true});
+  }
 }
 
+const button = document.querySelector('button')
+button.addEventListener('click', () => {
+  container.innerHTML = " ";
+  gridNo = prompt(`Grid Number?`, 16);
+  createGrid(gridNo);
+  hover();
+});
