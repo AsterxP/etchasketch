@@ -15,7 +15,7 @@ function hover () {
   const square = document.querySelectorAll(`.square`);
   for (let i = 0; i < square.length; i++) {
   square[i].addEventListener('mouseenter', function() {
-    square[i].classList.add('hover');
+    square[i].style.backgroundColor = generateRandomColor();
   }, {once : true});
   }
 }
@@ -27,3 +27,14 @@ button.addEventListener('click', () => {
   createGrid(gridNo);
   hover();
 });
+
+function generateRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+var randomColor=generateRandomColor();
